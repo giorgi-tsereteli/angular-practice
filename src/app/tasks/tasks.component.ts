@@ -2,6 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from "./new-task/new-task.component";
 import { EventEmitter } from '@angular/core';
+import { type NewTaskData } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -59,5 +60,20 @@ export class TasksComponent {
   onCancelAddTask() {
     console.log('task cancel event captured')
     this.isAddingTask = false
+  }
+
+  onAddTask(taskData : NewTaskData) {
+    this.tasks.unshift({
+      // id needs to be unique, so its randomly generated
+      id: new Date().getTime().toString(),
+      // userId is know because you already need it in order to have add new task popup
+      // you just assign expected object key the known value
+      userId: this.userId,
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.date
+    })
+    console.log('Newly added task:\n', this.tasks[0])
+    this.isAddingTask = false // just to close modal after adding the task
   }
 }
