@@ -1,16 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { TaskComponent } from './task/task.component';
+import { NewTaskComponent } from "./new-task/new-task.component";
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
-  imports: [TaskComponent],
+  imports: [TaskComponent, NewTaskComponent],
 })
 export class TasksComponent {
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name!: string;
+  @Output() addNewTask = new EventEmitter<void>();
+  isAddingTask:boolean = false
+
   tasks = [
     {
       id: 't1',
@@ -42,6 +47,17 @@ export class TasksComponent {
   }
 
   onCompleteTask(id: string) {
+    // filter again the output of the filter so completed task is not part of it
     this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  onStartAddTask() {
+    console.log('boolean display value gets changed')
+    this.isAddingTask = true
+  }
+
+  onCancelAddTask() {
+    console.log('task cancel event captured')
+    this.isAddingTask = false
   }
 }
