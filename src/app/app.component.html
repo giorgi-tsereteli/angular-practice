@@ -4,6 +4,7 @@
   <ul id="users">
     @for (user of users; track user.id) {
       <li>
+        <!-- onSelectUser($event) is NOT func from child component. It has same name but belongs to parent -->
         <app-user [user]="user" [selected]="user.id === selectedUserId" (select)="onSelectUser($event)" />
       </li>
     }
