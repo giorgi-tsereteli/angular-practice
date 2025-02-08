@@ -1,10 +1,12 @@
-<article>
-  <!-- task object is passed from parent and as a task input variable is available in task.component -->
-  <h2>{{ task.title }}</h2>
-  <time>{{ task.dueDate }}</time>
-  <p>{{ task.summary }}</p>
-  <p class="actions">
-    <!-- click event emits task id which is used by parent component to filter displayed tasks -->
-    <button (click)="onCompleteTask()">Complete</button>
-  </p>
-</article>
+<app-card> <!-- app-card is a wrapper component for styling -->
+  <article>
+    <!-- task object is passed from parent and as a task input variable is available in task.component -->
+    <h2>{{ task.title }}</h2>
+    <time>{{ task.dueDate | date : 'fullDate' }}</time>
+    <p>{{ task.summary }}</p>
+    <p class="actions">
+      <!-- click event emits task id which is used by parent component to filter displayed tasks -->
+      <button (click)="onCompleteTask()">Complete</button>
+    </p>
+  </article>
+</app-card>
