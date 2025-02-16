@@ -1,26 +1,2 @@
 <app-header></app-header>
-
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" placeholder="Input 1" /></td>
-                <td><input type="text" placeholder="Input 3" /></td>
-            </tr>
-            <tr>
-                <td><input type="text" placeholder="Input 2" /></td>
-                <td><input type="text" placeholder="Input 4" /></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <button>Calculate</button>
-</div>
+<app-user-input (calculate)="onCalculateInvestmentResults($event)"></app-user-input>
