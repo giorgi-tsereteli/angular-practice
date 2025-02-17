@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class InvestmentResultsService {
-  onCalculateInvestmentResults(
+export class resultsService {
+  onCalculateresults(
     initialInvestment: any,
     annualInvestment: any,
     expectedReturn: any,

@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { Component, inject, Input } from '@angular/core';
 import { EventEmitter, Output } from '@angular/core';
 
-import { InvestmentResultsService } from './investment.service';
+import { resultsService } from './investment.service';
 import type { InvestmentInput } from '../investment-input.model';
 
 @Component({
@@ -13,7 +13,7 @@ import type { InvestmentInput } from '../investment-input.model';
   styleUrl: './user-input.component.css',
 })
 export class UserInputComponent {
-  constructor(private investmentService: InvestmentResultsService) {}
+  constructor(private investmentService: resultsService) {}
 
   enteredInitialInvestment: string = '0';
   enteredAnnualInvestment: string = '0';

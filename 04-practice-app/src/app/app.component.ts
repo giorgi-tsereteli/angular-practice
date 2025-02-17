@@ -2,17 +2,28 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import { type InvestmentInput } from './investment-input.model';
+import { resultsComponent } from "./investment-results/investment-results.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, UserInputComponent],
+  imports: [HeaderComponent, UserInputComponent, resultsComponent, CommonModule],
 })
 export class AppComponent {
   
+  resultsData?: {
+    year: number,
+    interest: number,
+    valueEndOfYear: number,
+    annualInvestment: number,
+    totalInterest: number,
+    totalAmountInvested: number
+}[]
+
   // Good practice to name event handlers with the prefix "on"
-  onCalculateInvestmentResults(data: InvestmentInput) {
+  onCalculateresults(data: InvestmentInput) {
     // JS desctructuring syntax
     const { initialInvestment, annualInvestment, expectedReturn, duration } =
       data;
@@ -41,9 +52,7 @@ export class AppComponent {
       });
     }
     console.log('annualData from app component');
-    
     console.log(annualData);
-    
-    return annualData;
+    this.resultsData = annualData; // Store the result in the property
   }
 }
