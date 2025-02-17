@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
 import { type InvestmentInput } from './investment-input.model';
@@ -13,14 +13,15 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   
-  resultsData?: {
+  // Undefined here is used to have 2 tyes of data: undefined and an array of objects
+  resultsData = signal<{
     year: number,
     interest: number,
     valueEndOfYear: number,
     annualInvestment: number,
     totalInterest: number,
     totalAmountInvested: number
-}[]
+}[] | undefined>(undefined);
 
   // Good practice to name event handlers with the prefix "on"
   onCalculateresults(data: InvestmentInput) {
@@ -53,6 +54,6 @@ export class AppComponent {
     }
     console.log('annualData from app component');
     console.log(annualData);
-    this.resultsData = annualData; // Store the result in the property
+    this.resultsData.set(annualData); // Set the value to the signal
   }
 }

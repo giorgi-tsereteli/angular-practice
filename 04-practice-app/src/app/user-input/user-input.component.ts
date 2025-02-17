@@ -1,6 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { Component, inject, Input } from '@angular/core';
-import { EventEmitter, Output } from '@angular/core';
+import { Component, inject, Input, output, signal } from '@angular/core';
 
 import { resultsService } from './investment.service';
 import type { InvestmentInput } from '../investment-input.model';
@@ -15,21 +14,26 @@ import type { InvestmentInput } from '../investment-input.model';
 export class UserInputComponent {
   constructor(private investmentService: resultsService) {}
 
-  enteredInitialInvestment: string = '0';
-  enteredAnnualInvestment: string = '0';
-  enteredExpectedInvestment: string = '0';
-  enteredDuration: string = '0';
+  enteredInitialInvestment = signal('0');
+  enteredAnnualInvestment = signal('0');
+  enteredExpectedInvestment = signal('0');
+  enteredDuration = signal('0');
 
-  @Output() calculate = new EventEmitter<InvestmentInput>();
+  calculate = output<InvestmentInput>();
 
   onSubmit() {
     this.calculate.emit({
       // + is a shorthand for converting a string to a number
-      // Question is, why in course is he NOT making it number by default? O__o
-      initialInvestment: +this.enteredInitialInvestment,
-      annualInvestment: +this.enteredAnnualInvestment,
-      expectedReturn: +this.enteredExpectedInvestment,
-      duration: +this.enteredDuration,
+      // You need () with when emitting the values bcz you need to emit data and not the signal itself
+      initialInvestment: +this.enteredInitialInvestment(),
+      annualInvestment: +this.enteredAnnualInvestment(),
+      expectedReturn: +this.enteredExpectedInvestment(),
+      duration: +this.enteredDuration(),
     });
+    // Following is block to reset inputs to 0
+    this.enteredInitialInvestment.set('0');
+    this.enteredAnnualInvestment.set('0');
+    this.enteredExpectedInvestment.set('0');
+    this.enteredDuration.set('0');
   }
 }
