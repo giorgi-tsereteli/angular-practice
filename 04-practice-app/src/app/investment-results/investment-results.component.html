@@ -1,0 +1,27 @@
+<!-- Fallback in case button was not clicked -->
+@if(!results) {
+  <p class="center">Click submit button to generate results</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>Interest (Year)</th>
+        <th>Investment Value</th>
+        <th>Interest</th>
+        <th>Total Interest</th>
+        <th>Invested Capital</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (investment of results; track investment.year) {
+      <tr>
+        <td>{{ investment.year }}</td>
+        <td>{{ investment.valueEndOfYear | currency : "USD" }}</td>
+        <td>{{ investment.interest | currency : "USD" }}</td>
+        <td>{{ investment.totalInterest | currency : "USD" }}</td>
+        <td>{{ investment.totalAmountInvested | currency : "USD" }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+}
