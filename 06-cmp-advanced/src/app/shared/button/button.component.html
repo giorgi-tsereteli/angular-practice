@@ -1,6 +1,14 @@
+  <span>
+    <ng-content></ng-content>
+  </span>
+  <span class="icon">
+    <ng-content select="icon" />
+  </span>
+
+
 <!-- If you have multiple content projection, use select and define class name to target that particular ng-content -->
 <!-- In the parent html code, you have span with icon classname. It ends up in the second ng-content block -->
-<span>
+<!-- <span>
   <ng-content></ng-content>
 </span>
-<ng-content select=".icon"></ng-content>
+<ng-content select=".icon"></ng-content> -->
