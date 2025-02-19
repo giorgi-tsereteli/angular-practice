@@ -1,22 +1,20 @@
-<form>
-  <!-- Following code is now used in content projection and template for app-control component -->
-  <!-- <p>
+<!-- Following code is now used in content projection and template for app-control component -->
+<!-- <p>
     <label>Title</label>
     <input name="title" id="title" />
   </p> -->
 
+<form>
   <app-control label="Title">
     <input name="title" id="title" />
   </app-control>
-
   <app-control label="Request">
     <textarea name="request" id="request" rows="3"></textarea>
   </app-control>
-
   <p>
     <button appButton>
       Submit
-      <span class="icon">⌲</span>
+      <span ngProjectAs="icon">⌲</span>
     </button>
   </p>
 </form>
