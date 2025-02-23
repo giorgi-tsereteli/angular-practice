@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, HostListener, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -11,8 +11,21 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
     // Prior, u added class names in the template each time when u used the component
     // Now, u can add class names here and they will be added to the host element
     class: 'control',
+    '(click)': 'onClick()',
   },
 })
 export class ControlComponent {
+  // Add class names to the host element. Similar to above in component decorator
+  // @HostBinding('class') className = 'control';
+
+  // Add event listeners to the host element. Similar to above in component decorator
+  // @HostListener('click') onClick() {
+  //     console.log('ControlComponent.onClick()');
+  // }
+
   @Input({ required: true }) label!: string;
+
+  onClick() {
+    console.log('ControlComponent.onClick()');
+  }
 }
