@@ -1,12 +1,31 @@
-<div id="status">
-  @if (currentStatus === 'online') {
-  <p>Servers are online</p>
-  <p>All systems are operational.</p>
-  } @else if (currentStatus === 'offline') {
-  <p>Servers are offline</p>
-  <p>Functionality should be restored soon.</p>
-  } @else {
-  <p>Server status is unknown</p>
-  <p>Fetching server status failed.</p>
-  }
+<!-- Apply classname status to div, if the condition is met and var is equal to string -->
+<!-- <div [class.status]="currentStatus === 'offline'"> -->
+
+<!-- Apply class names and styles based on the multi condition logic -->
+<!-- Class names with dashes require single quotes to avoid error -->
+<!-- status : true is simply a default class name -->
+<!-- In styles binding, it's just example with dummy values for font-size -->
+<div
+  [class]="{
+    status: true,
+    'status-online': currentStatus === 'online',
+    'status-offline': currentStatus === 'offline',
+    uknown: currentStatus === 'unknown'
+  }"
+  [style]="{
+    fontSize: currentStatus === 'offline' ? '1.5rem' : '1rem'
+  }"
+>
+  <div id="status">
+    @if (currentStatus === 'online') {
+    <p>Servers are online</p>
+    <p>All systems are operational.</p>
+    } @else if (currentStatus === 'offline') {
+    <p>Servers are offline</p>
+    <p>Functionality should be restored soon.</p>
+    } @else {
+    <p>Server status is unknown</p>
+    <p>Fetching server status failed.</p>
+    }
+  </div>
 </div>
