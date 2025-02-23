@@ -29,8 +29,8 @@ export class ControlComponent {
   @Input({ required: true }) label!: string;
 
   onClick() {
-    console.log('ControlComponent.onClick()');
-    console.log(this.element);
+    // console.log('ControlComponent.onClick()');
+    // console.log(this.element);
     
   }
 }
