@@ -4,7 +4,7 @@
     <input name="title" id="title" />
   </p> -->
 
-<form (ngSubmit)="onSubmit(titleInput.value, textareInput.value)">
+<form (ngSubmit)="onSubmit(titleInput.value, textareInput.value, form)" #form>
   <app-control label="Title">
     <!-- Using template variables and extracting value from the input. Just alternative to two way binding -->
     <input name="title" id="title" #titleInput/>
