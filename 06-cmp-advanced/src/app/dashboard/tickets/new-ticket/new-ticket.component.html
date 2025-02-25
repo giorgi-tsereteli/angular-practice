@@ -1,16 +1,23 @@
 <!-- Following code is now used in content projection and template for app-control component -->
 <!-- <p>
-    <label>Title</label>
-    <input name="title" id="title" />
-  </p> -->
+  <label>Title</label>
+  <input name="title" id="title" />
+</p> -->
 
 <form (ngSubmit)="onSubmit(titleInput.value, textareInput.value, form)" #form>
   <app-control label="Title">
     <!-- Using template variables and extracting value from the input. Just alternative to two way binding -->
-    <input name="title" id="title" #titleInput/>
+    <!-- You can have multiple template variables. #input is used in the control.component to show how to work with projected content and variables -->
+    <input name="title" id="title" #titleInput #input />
   </app-control>
   <app-control label="Request">
-    <textarea name="request" id="request" rows="3" #textareInput></textarea>
+    <textarea
+      name="request"
+      id="request"
+      rows="3"
+      #textareInput
+      #input
+    ></textarea>
   </app-control>
   <p>
     <button appButton>

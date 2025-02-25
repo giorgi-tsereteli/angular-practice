@@ -1,3 +1,6 @@
 <label>{{ label }}</label>
+<!-- Content projection in here selects which element will be inncluded in the template -->
+<!-- That way it becomes reusable and you can select different option like in case of input or textarea -->
+<!-- This entire control.component is used in the tickets section where forms and elements get constructed -->
 <ng-content select="input, textarea"></ng-content>
 <!-- <input name="title" id="title" /> -->

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, inject, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostBinding, HostListener, inject, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -26,11 +26,15 @@ export class ControlComponent {
   // Access the host element using ElementRef
   private element = inject(ElementRef)
 
+  // Since both types of elements can be projected into app-control, u need to specify below
+  @ContentChild('input') private control!: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+
   @Input({ required: true }) label!: string;
 
   onClick() {
     // console.log('ControlComponent.onClick()');
     // console.log(this.element);
+    console.log(this.control);
     
   }
 }
