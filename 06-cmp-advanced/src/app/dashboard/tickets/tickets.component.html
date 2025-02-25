@@ -1,11 +1,12 @@
 <div>
   <ul>
     @for (ticket of tickets; track ticket.id) {
-      <li>
-        <app-ticket></app-ticket>
-      </li>
+    <li>
+      <!-- Each new ticket is passed into data which is then used to create template of the ticket -->
+      <app-ticket [data]="ticket"></app-ticket>
+    </li>
     } @empty {
-      <li>No tickets available</li>
+    <li>No tickets available</li>
     }
   </ul>
 </div>
