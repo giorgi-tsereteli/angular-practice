@@ -37,7 +37,7 @@ export class ServerStatusComponent implements OnInit {
   // This method is called when the component is initialized
   // It's better to use ngOnInit() instead of the constructor for such actions
   ngOnInit() {
-    console.log('ngOnInit initialized');
+    console.log('ServerStatusComponent.ngOnInit() initialized');
     // Simulate server status change
     this.interval = setInterval(() => {
       const rnd = Math.random(); // Random number between 0 and 1

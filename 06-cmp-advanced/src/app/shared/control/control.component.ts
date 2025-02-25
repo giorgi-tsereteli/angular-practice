@@ -1,4 +1,15 @@
-import { Component, ContentChild, ElementRef, HostBinding, HostListener, inject, Input, ViewEncapsulation } from '@angular/core';
+import {
+  afterNextRender,
+  afterRender,
+  Component,
+  ContentChild,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  inject,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -15,6 +26,22 @@ import { Component, ContentChild, ElementRef, HostBinding, HostListener, inject,
   },
 })
 export class ControlComponent {
+  constructor() {
+    // This defines which function get called when anythig is changed in the app
+    afterRender(() => {
+      console.log('ControlComponent.afterRender()');
+    });
+
+    /**
+     * This hook is called after the next rendering cycle is complete.
+     * It is useful when you want to perform an action after the next change in the application, not immediately after the current change.
+     * This can be helpful for deferring actions that should only occur once the next set of changes has been rendered.
+     */
+    afterNextRender(() => {
+      console.log('ControlComponent.afterNextRender()');
+    });
+  }
+
   // Add class names to the host element. Similar to above in component decorator
   // @HostBinding('class') className = 'control';
 
@@ -24,10 +51,12 @@ export class ControlComponent {
   // }
 
   // Access the host element using ElementRef
-  private element = inject(ElementRef)
+  private element = inject(ElementRef);
 
   // Since both types of elements can be projected into app-control, u need to specify below
-  @ContentChild('input') private control!: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
+  @ContentChild('input') private control!: ElementRef<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
 
   @Input({ required: true }) label!: string;
 
@@ -35,6 +64,5 @@ export class ControlComponent {
     // console.log('ControlComponent.onClick()');
     // console.log(this.element);
     console.log(this.control);
-    
   }
 }
