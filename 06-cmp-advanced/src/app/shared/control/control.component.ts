@@ -29,7 +29,7 @@ export class ControlComponent {
   constructor() {
     // This defines which function get called when anythig is changed in the app
     afterRender(() => {
-      console.log('ControlComponent.afterRender()');
+      // console.log('ControlComponent.afterRender()');
     });
 
     /**
@@ -38,7 +38,7 @@ export class ControlComponent {
      * This can be helpful for deferring actions that should only occur once the next set of changes has been rendered.
      */
     afterNextRender(() => {
-      console.log('ControlComponent.afterNextRender()');
+      // console.log('ControlComponent.afterNextRender()');
     });
   }
 

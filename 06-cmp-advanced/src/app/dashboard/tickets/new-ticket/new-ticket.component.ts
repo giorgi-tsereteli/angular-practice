@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
@@ -22,6 +24,8 @@ export class NewTicketComponent implements AfterViewInit, OnInit {
   // You can also pass classnames and interact with the instanc ef that element. You can NOT pass css class like .form
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
 
+  @Output() add = new EventEmitter<{ title: string; ticketText: string }>();
+
   ngAfterViewInit(): void {
     console.log(
       'NewTicketComponent.ngAfterViewInit() - form should be available',
@@ -36,8 +40,11 @@ export class NewTicketComponent implements AfterViewInit, OnInit {
     );
   }
 
-  onSubmit(title: string, description: string, form: HTMLFormElement): void {
-    console.log(`Title: ${title}, Description: ${description}, Form:`, form);
+  onSubmit(title: string, ticketText: string, form: HTMLFormElement): void {
+    // console.log(`Title: ${title}, Description: ${ticketText}, Form:`, form);
+
+    // This method emits the submitted form data which is then used in tickets.component to add to tickets array
+    this.add.emit({ title, ticketText });
 
     // Reset the form after submission using the #form template variable from the components template
     // Question mark is needed since the value might not be available at the time of the call

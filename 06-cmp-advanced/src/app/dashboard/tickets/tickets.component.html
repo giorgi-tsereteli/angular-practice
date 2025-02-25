@@ -1,4 +1,16 @@
-<!-- Added form here to create new ticket -->
+<div>
+  <ul>
+    @for (ticket of tickets; track ticket.id) {
+      <li>
+        <app-ticket></app-ticket>
+      </li>
+    } @empty {
+      <li>No tickets available</li>
+    }
+  </ul>
+</div>
+
+<!-- This is form to create new ticket -->
 <div id="new-ticket">
-  <app-new-ticket></app-new-ticket>
+  <app-new-ticket (add)="onAdd($event)"></app-new-ticket>
 </div>
