@@ -3,7 +3,7 @@
     @for (ticket of tickets; track ticket.id) {
     <li>
       <!-- Each new ticket is passed into data which is then used to create template of the ticket -->
-      <app-ticket [data]="ticket"></app-ticket>
+      <app-ticket [data]="ticket" (close)="onCloseTicket(ticket.id)"></app-ticket>
     </li>
     } @empty {
     <li>No tickets available</li>

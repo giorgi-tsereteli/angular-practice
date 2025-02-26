@@ -43,6 +43,10 @@ button {
   align-items: center;
 }
 
+article button:hover {
+  cursor: pointer;
+}
+
 button span:first-child {
   margin-bottom: 0.1rem;
 }
