@@ -51,5 +51,8 @@ export class NewTicketComponent implements AfterViewInit, OnInit {
     // Since rest works on the form element, you need to access the nativeElement property of the form variable
     // In previous example, you just passed template variable form into the function and didn't use ViewChild at all
     this.form?.nativeElement.reset();
+
+    // If you were to use two way binding, you could just set the values to empty strings
+    // Above is just an example of way of doing same with template variables and nativeElement
   }
 }
