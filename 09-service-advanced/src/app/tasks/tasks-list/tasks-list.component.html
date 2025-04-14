@@ -10,10 +10,12 @@
   </p>
 </header>
 
+
+<!-- Logic of task filtering and display is done in component. Here u only loop through the modified [] of ALL tasks -->
 <ul>
-  @for (task of tasks; track task) {
-    <li>
-      <app-task-item [task]="task" />
-    </li>
+  @for (task of tasks(); track task.id) {
+  <li>
+    <app-task-item [task]="task" />
+  </li>
   }
 </ul>

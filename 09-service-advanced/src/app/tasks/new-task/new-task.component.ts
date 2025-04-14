@@ -10,10 +10,17 @@ import { TasksService } from '../tasks.service';
   styleUrl: './new-task.component.css',
 })
 export class NewTaskComponent {
+  // Field reset after adding a task
   private formEl = viewChild<ElementRef<HTMLFormElement>>('form');
+
   constructor(private tasksService: TasksService) {}
 
   onAddTask(title: string, description: string) {
+    this.tasksService.addTask({
+      title: title,
+      description: description,
+    });
+
     this.formEl()?.nativeElement.reset();
   }
 }
